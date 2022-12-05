@@ -1,0 +1,12 @@
+timestamp,start_time,total_elapsed_time,total_timer_time,total_distance,total_cycles,message_index,total_calories,avg_speed,max_speed,event,event_type,avg_heart_rate,max_heart_rate,avg_cadence,max_cadence,lap_trigger,sport,sub_sport,avg_fractional_cadence,max_fractional_cadence
+1037682988,1037682861,126.842,126.842,72.15,54,0,10,0.569,1.941,lap,stop,112,124,21,83,manual,running,treadmill,0.9296875,0.5
+1037683111,1037682988,123.695,123.695,286.83,169,1,17,2.319,2.379,lap,stop,143,155,83,86,manual,running,treadmill,0.609375,0
+1037683289,1037683111,177.524,177.524,99.32,72,2,21,0.559,2.566,lap,stop,135,157,22,86,manual,running,treadmill,0.4921875,0.5
+1037683416,1037683289,127.144,127.144,280.75,177,3,17,2.208,2.435,lap,stop,145,162,81,87,manual,running,treadmill,0.484375,0.5
+1037683586,1037683416,170.18,170.18,14.07,10,4,21,0.083,2.351,lap,stop,141,165,4,85,manual,running,treadmill,0.5,0
+1037683708,1037683586,122.088,122.088,269.18,174,5,17,2.205,2.398,lap,stop,150,165,82,88,manual,running,treadmill,0.3671875,0.5
+1037683883,1037683708,174.506,174.506,11.84,10,6,21,0.068,2.379,lap,stop,141,167,2,85,manual,running,treadmill,0.9296875,0.5
+1037684009,1037683883,126.163,126.163,286.26,178,7,17,2.269,2.417,lap,stop,150,168,85,102,manual,running,treadmill,0.0078125,0.5
+1037684145,1037684009,136.626,136.626,26.11,28,8,16,0.191,2.51,lap,stop,143,167,9,85,manual,running,treadmill,0.65625,0.5
+1037684273,1037684145,127.4,127.4,297.62,185,9,17,2.336,2.426,lap,stop,150,164,85,89,manual,running,treadmill,0.8359375,0
+1037684280,1037684273,1.347,1.347,4.64,3,10,0,3.443,2.323,lap,stop,164,164,85,85,session_end,running,treadmill,0.5,0.5
