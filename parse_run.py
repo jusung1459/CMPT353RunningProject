@@ -98,5 +98,5 @@ def main():
     #     subdata.to_csv(name, index=False)
 
     
-
-main()
+if __name__ == "__main__":
+    main()
