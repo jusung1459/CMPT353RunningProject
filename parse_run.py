@@ -15,14 +15,14 @@ def parseAccl(data, splits):
     # data['time'] = pd.to_datetime(data['time'],format= '%H:%M:%S' ).dt.time
     # data['time'] = data['time'].values.astype(np.int64) // 10 ** 6
 
-    data['timestamp'] = data['time'].round('100ms')
+    data['timestamp'] = data['time'].round('50ms')
     data = data.groupby(['timestamp'], as_index=False).mean()
     # print(data)
     splitted_data = []
     for split in splits:
         # print(split)
         index = data.loc[data['timestamp'] == split].index[0]
-        splitted_data.append(data.iloc[index:index+480,])
+        splitted_data.append(data.iloc[index:index+2400,]) ## 120s * 10
     return splitted_data
 
 def parseSplits(data):
@@ -70,19 +70,24 @@ def main():
     combined = combine(activity, accl)
     print(combined)
 
-    b, a = signal.butter(5, 0.8, btype='lowpass', analog=False)
+    b, a = signal.butter(5, 0.5, btype='lowpass', analog=False)
     low_passed_butter = signal.filtfilt(b, a, accl[3]['gFx'])
 
-    bb, aa = signal.cheby1(5, 5, 5, btype='lowpass', analog=True)
-    low_passed_cheb = signal.filtfilt(bb, aa, accl[3]['gFx'])
+    # bb, aa = signal.cheby1(5, 5, 5, btype='lowpass', analog=True)
+    # low_passed_cheb = signal.filtfilt(bb, aa, accl[3]['gFx'])
 
     ## plot
-    plt.plot(combined[3]['timestamp_x'],accl[3]['gFx'])
+    plt.plot(combined[3]['timestamp_x'],accl[3]['gFx'], label='x')
     plt.plot(combined[3]['timestamp_x'],low_passed_butter)
-    plt.plot(combined[3]['timestamp_x'],low_passed_cheb)
-    # plt.plot(combined[3]['timestamp_x'],accl[3]['gFy'])
-    # plt.plot(combined[3]['timestamp_x'],accl[3]['gFz'])
-    # plt.plot(activity[3]['timestamp'],activity[3]['heart_rate'])
+    # plt.plot(combined[3]['timestamp_x'],low_passed_cheb)
+    # plt.plot(combined[3]['timestamp_x'],accl[3]['gFy'], label='y')
+    # plt.plot(combined[3]['timestamp_x'],accl[3]['gFz'], label='z')
+    # plt.plot(activity[3]['timestamp'],activity[3]['heart_rate'], label='heartrate')
+    
+    plt.title("Heart Rate versus Time")
+    plt.xlabel("Timestamp")
+    plt.ylabel("Heart Rate")
+    plt.legend()
 
     plt.show()
 
