@@ -17,7 +17,7 @@ def custom_filter(data):
         low_passed_butter = signal.filtfilt(b, a, data[i]['gFx'])
         data[i]['filtered_gFx'] = low_passed_butter
 
-        b, a = signal.butter(3, 0.35, btype='lowpass', analog=False)
+        b, a = signal.butter(3, 0.25, btype='lowpass', analog=False)
         low_passed_butter = signal.filtfilt(b, a, data[i]['gFy'])
         data[i]['filtered_gFy'] = low_passed_butter
 
@@ -46,9 +46,9 @@ def main():
     # low_passed_cheb = signal.filtfilt(bb, aa, accl[3]['gFx'])
 
     ## plot
-    plt.plot(filtered_combined[3]['timestamp_x'],filtered_combined[3]['filtered_gFx'], label='butter filter')
+    plt.plot(filtered_combined[3]['timestamp_x'],filtered_combined[3]['filtered_gFy'], label='butter filter')
     # plt.plot(combined[3]['timestamp_x'],high_butter, label='butter high')
-    plt.plot(filtered_combined[3]['timestamp_x'],filtered_combined[3]['gFx'], label='x')
+    plt.plot(filtered_combined[3]['timestamp_x'],filtered_combined[3]['gFy'], label='y')
     # plt.plot(combined[3]['timestamp_x'],low_passed_cheb)
     # plt.plot(combined[3]['timestamp_x'],accl[3]['gFy'], label='y')
     # plt.plot(combined[3]['timestamp_x'],accl[3]['gFz'], label='z')
