@@ -11,7 +11,7 @@ it will produce outside_distance.csv and treadmill_distance.csv
 
 which are the final cleaned data set we will be using in below.
 
-Second run the command:
+Next run the command:
 
 `python3 distance_test.py`
 
