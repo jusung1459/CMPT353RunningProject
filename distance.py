@@ -136,6 +136,9 @@ def main():
     plt.hist(distance, bins=50)
     plt.show()
 
+    # save file
+    # pd.DataFrame({"distance":distance}).to_csv("outside_distance.csv", index=False)
+
     
 if __name__ == "__main__":
     main()
