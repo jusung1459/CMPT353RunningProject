@@ -15,11 +15,11 @@ def main():
     # print(treadmill)
     
     normal_test_treadmill = stats.normaltest(treadmill['distance'])
-    # outside['distance'] = (outside['distance']/100).round()
-    # outside = outside.loc[outside['distance'] >= 40]
-    # treadmill['distance'] = (treadmill['distance']/100).round()
-    # outside['distance'] = outside['distance'] ** 2
-    # treadmill['distance'] = treadmill['distance'] ** 2
+    outside['distance'] = (outside['distance']/100).round()
+    outside = outside.loc[outside['distance'] >= 40]
+    treadmill['distance'] = (treadmill['distance']/100).round()
+    outside['distance'] = outside['distance'] ** 2
+    treadmill['distance'] = treadmill['distance'] ** 2
 
     p_value = stats.ttest_ind(outside['distance'], treadmill['distance'])
     print(p_value)
