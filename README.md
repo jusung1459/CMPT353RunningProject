@@ -3,7 +3,7 @@
 Required libraries:
 numpy, pandas, matplotlib, scipy
 
-1st the command run:
+1st run the command:
 
 python3 distance.py 4splits_treadmill/ 4splits_outside/
 
