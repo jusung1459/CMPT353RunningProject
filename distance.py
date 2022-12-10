@@ -83,7 +83,7 @@ def split_waves(data):
     wave = []
     first_dip = 0
     dip_flag = False
-    print(data)
+    # print(data)
     for i in range(1, len(data)-1):
         if ((data['filtered_gFy'][i-1] > data['filtered_gFy'][i]) and (data['filtered_gFy'][i] < data['filtered_gFy'][i+1])):
             first_dip = i
@@ -117,11 +117,13 @@ def split_waves(data):
 
 def main():
     warnings.filterwarnings("ignore")
-    input_directory = pathlib.Path(sys.argv[1])
+    input_directory_tread = pathlib.Path(sys.argv[1])
+    input_directory_out = pathlib.Path(sys.argv[1])
     
-    accl = pd.read_csv(input_directory / 'accl.csv', index_col=False)
-    splits = pd.read_csv(input_directory / 'splits.csv')
-    activity = pd.read_csv(input_directory / 'activity.csv')
+    ## treadmill data
+    accl = pd.read_csv(input_directory_tread / 'accl.csv', index_col=False)
+    splits = pd.read_csv(input_directory_tread / 'splits.csv')
+    activity = pd.read_csv(input_directory_tread / 'activity.csv')
 
     splits = parseSplits(splits)
     accl = parseAccl(accl, splits)
@@ -134,10 +136,31 @@ def main():
         distance += split_waves(sub_data)
 
     plt.hist(distance, bins=50)
-    plt.show()
+    # plt.show()
 
     # save file
-    # pd.DataFrame({"distance":distance}).to_csv("outside_distance.csv", index=False)
+    pd.DataFrame({"distance":distance}).to_csv("treadmill_distance.csv", index=False)
+
+    ## outside data
+    accl = pd.read_csv(input_directory_out / 'accl.csv', index_col=False)
+    splits = pd.read_csv(input_directory_out / 'splits.csv')
+    activity = pd.read_csv(input_directory_out / 'activity.csv')
+
+    splits = parseSplits(splits)
+    accl = parseAccl(accl, splits)
+    activity = parseActivity(activity, splits)
+    combined = combine(activity, accl)
+    filtered_combined = custom_filter(combined)
+    # print(filtered_combined)
+    distance = []
+    for sub_data in filtered_combined:
+        distance += split_waves(sub_data)
+
+    plt.hist(distance, bins=50)
+    # plt.show()
+
+    # save file
+    pd.DataFrame({"distance":distance}).to_csv("outside_distance.csv", index=False)
 
     
 if __name__ == "__main__":

@@ -42,9 +42,6 @@ def main():
     filtered_combined = custom_filter(combined)
     print(filtered_combined)
 
-    # bb, aa = signal.cheby1(5, 5, 5, btype='lowpass', analog=True)
-    # low_passed_cheb = signal.filtfilt(bb, aa, accl[3]['gFx'])
-
     ## plot
     plt.plot(filtered_combined[3]['timestamp_x'],filtered_combined[3]['filtered_gFy'], label='butter filter')
     # plt.plot(combined[3]['timestamp_x'],high_butter, label='butter high')
